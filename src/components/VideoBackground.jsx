@@ -11,7 +11,7 @@ const VideoBackground = () => {
           'https://api.pexels.com/videos/search?query=minimal+abstract&per_page=1',
           {
             headers: {
-              Authorization: '8qqcG9idzdPIcjSWTMO3gAuAtwpQquINMO6efzc639s5aD52PlyZsHaF'
+              Authorization: import.meta.env.VITE_PEXELS_API_KEY
             }
           }
         );
