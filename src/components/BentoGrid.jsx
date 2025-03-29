@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 const BentoGrid = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -28,6 +29,14 @@ const BentoGrid = () => {
     fetchImages();
   }, []);
 
+  const handleTouchStart = (index) => {
+    setActiveIndex(index);
+  };
+
+  const handleTouchEnd = () => {
+    setActiveIndex(null);
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-96">
@@ -41,14 +50,18 @@ const BentoGrid = () => {
       {/* Layout para móviles */}
       <div className="grid grid-cols-1 gap-4 sm:hidden">
         {/* Imagen principal */}
-        <div className="relative overflow-hidden rounded-2xl group aspect-[4/3]">
+        <div 
+          className="relative overflow-hidden rounded-2xl group aspect-[4/3]"
+          onTouchStart={() => handleTouchStart(0)}
+          onTouchEnd={handleTouchEnd}
+        >
           <img
             src={images[0]?.urls?.regular}
             alt={images[0]?.alt_description}
-            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 opacity-50"
+            className={`w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 ${activeIndex === 0 ? 'scale-105 opacity-100' : 'opacity-75'}`}
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <h2 className="text-4xl font-bold text-white drop-shadow-lg group-hover:opacity-0 transition-opacity duration-300">
+            <h2 className={`text-4xl font-bold text-white drop-shadow-lg transition-opacity duration-300 ${activeIndex === 0 ? 'opacity-0' : ''} group-hover:opacity-0`}>
               Nothing!
             </h2>
           </div>
@@ -56,14 +69,19 @@ const BentoGrid = () => {
 
         {/* Imágenes secundarias */}
         {[1, 2, 3, 4, 5].map((index) => (
-          <div key={index} className="relative overflow-hidden rounded-2xl group aspect-[4/3]">
+          <div 
+            key={index} 
+            className="relative overflow-hidden rounded-2xl group aspect-[4/3]"
+            onTouchStart={() => handleTouchStart(index)}
+            onTouchEnd={handleTouchEnd}
+          >
             <img
               src={images[index]?.urls?.regular}
               alt={images[index]?.alt_description}
-              className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 opacity-50"
+              className={`w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 ${activeIndex === index ? 'scale-105 opacity-100' : 'opacity-75'}`}
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <h2 className="text-3xl font-bold text-white drop-shadow-lg group-hover:opacity-0 transition-opacity duration-300">
+              <h2 className={`text-3xl font-bold text-white drop-shadow-lg transition-opacity duration-300 ${activeIndex === index ? 'opacity-0' : ''} group-hover:opacity-0`}>
                 Nothing!
               </h2>
             </div>
@@ -78,7 +96,7 @@ const BentoGrid = () => {
           <img
             src={images[0]?.urls?.regular}
             alt={images[0]?.alt_description}
-            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 opacity-50"
+            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 opacity-75"
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <h2 className="text-7xl font-bold text-white drop-shadow-lg group-hover:opacity-0 transition-opacity duration-300">
@@ -92,7 +110,7 @@ const BentoGrid = () => {
           <img
             src={images[1]?.urls?.regular}
             alt={images[1]?.alt_description}
-            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 opacity-50"
+            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 opacity-75"
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <h2 className="text-4xl font-bold text-white drop-shadow-lg group-hover:opacity-0 transition-opacity duration-300">
@@ -104,7 +122,7 @@ const BentoGrid = () => {
           <img
             src={images[2]?.urls?.regular}
             alt={images[2]?.alt_description}
-            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 opacity-50"
+            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 opacity-75"
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <h2 className="text-4xl font-bold text-white drop-shadow-lg group-hover:opacity-0 transition-opacity duration-300">
@@ -118,7 +136,7 @@ const BentoGrid = () => {
           <img
             src={images[3]?.urls?.regular}
             alt={images[3]?.alt_description}
-            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 opacity-50"
+            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 opacity-75"
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <h2 className="text-5xl font-bold text-white drop-shadow-lg group-hover:opacity-0 transition-opacity duration-300">
@@ -130,7 +148,7 @@ const BentoGrid = () => {
           <img
             src={images[4]?.urls?.regular}
             alt={images[4]?.alt_description}
-            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 opacity-50"
+            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 opacity-75"
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <h2 className="text-5xl font-bold text-white drop-shadow-lg group-hover:opacity-0 transition-opacity duration-300">
@@ -142,7 +160,7 @@ const BentoGrid = () => {
           <img
             src={images[5]?.urls?.regular}
             alt={images[5]?.alt_description}
-            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 opacity-50"
+            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 opacity-75"
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <h2 className="text-6xl font-bold text-white drop-shadow-lg group-hover:opacity-0 transition-opacity duration-300">
