@@ -47,7 +47,7 @@ function App() {
         <div className="w-full bg-black text-white py-16 sm:py-20 md:py-24 mt-12">
           <div className="container mx-auto px-4">
             <div className="flex flex-col items-center justify-center text-center">
-              <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight">
+              <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight">
                 Nothing!
               </h2>
             </div>
@@ -60,7 +60,7 @@ function App() {
         <div className="w-full bg-white py-20 sm:py-24 md:py-28 lg:py-32">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-black mb-6 sm:mb-8">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-black mb-6 sm:mb-8">
                 Descubre la magia de lo simple
               </h2>
               <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-light leading-relaxed">
